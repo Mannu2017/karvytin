@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<title>Karvy Tin</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" /> 
+	 <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header class="site-header">
+		<div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Karvy Data Management Services Limited.</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="list-inline pull-right">
+                            <li><a><i class="glyphicon glyphicon-phone"></i> +91 40 23312454</a></li>
+                        </ul>                        
+                    </div>
+                </div>
+            </div>
+         </div>
+         <nav class="navbar navbar-default">
+         	<div class="container">
+         		<a th:href="@{/admin/home}" class="navbar-brand">
+					<img th:src="@{/img/karlogo.png}" alt="Post"></img>
+				</a>
+				<ul class="nav navbar-nav main-navbar-nav">
+					<li></li>
+				</ul>
+				<ul class="nav navbar-nav main-navbar-nav">
+					<li class="dropdown">
+                            <a href="#" title="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">AADHAAR<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" title="">Add New District</a></li>
+                                <li><a href="#" title="">Add Station Id</a></li>
+                                <li><a href="#" title="">Get Report</a></li>
+                                <li><a href="#" title="">Token Report</a></li>
+                            </ul>
+                        </li>
+					<li class="dropdown">
+                        <a href="#" title="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PAN<span class="caret"></span></a>
+                           <ul class="dropdown-menu">
+                              <li><a href="#" title="">Rejection Report</a></li>
+                              <li><a href="#" title="">Pan details</a></li>
+                              <li><a href="#" title="">Pan Report</a></li>
+                           </ul>
+                     </li>
+					<li class="dropdown">
+                        <a href="#" title="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRAN<span class="caret"></span></a>
+                           <ul class="dropdown-menu">
+                              <li><a href="#" title="">Rejection Report</a></li>
+                              <li><a href="#" title="">Pran details</a></li>
+                              <li><a href="#" title="">Pran Report</a></li>
+                              <li><a href="#" title="">Error Handling</a></li>
+                           </ul>
+                     </li>
+                     <li class="active"><a th:href="@{/admin/registration}" class="btn-block" role="button">Registration</a></li>
+				</ul>
+				<div class="collapse navbar-collapse" id="bs-navbar-collapse">
+					<ul class="nav navbar-nav main-navbar-nav">	
+						<form th:action="@{/logout}" method="get"><span th:utext="${userName}"></span>  .<button class="btn btn-primary" name="registration" type="Submit" >Logout</button></form>						 
+					</ul>
+				</div>
+       	</div>
+     </nav>
+</header>
+<div class="topa">
+	<marquee behavior="scroll" direction="left">Welcome to Karvy Data Management Services Official Web Page</marquee>
+</div>
+<main class="site-main">
+        <section class="hero_areaa">
+            <div class="hero_contenta">
+                
+                	<form autocomplete="off" action="#" th:action="@{/admin/registration}" th:object="${user}" method="post" class="form-horizontal" role="form">
+                        <div class="col-sm-12">
+                            <h11>New User Registration</h11>
+                            <div>.</div>
+                        </div>
+                        
+                    	<div class="col-sm-4">
+                          <h12>First Name: </h12> 
+							<input class="form-control" type="text" th:field="*{name}" placeholder="First Name" style="width:300px" /> 
+                         	<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message"></label>
+                          </div>
+                           
+                        <div class="col-sm-6">
+                          <h12>Last Name: </h12> 
+							<input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control " style="width:300px" />
+							<label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></label>
+                          </div>
+                        
+                        <div class="col-sm-4">
+                          <h12>Email Id: </h12> 
+							<input type="text" th:field="*{email}" placeholder="Email" class="form-control " style="width:300px" /> <label
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
+                          </div>
+                        
+                        <div class="col-sm-4">
+                          <h12>Password: </h12> 
+							<input type="password" th:field="*{password}" placeholder="Password" class="form-control" style="width:300px" /> <label
+								th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
+                          </div>
+                        
+                        <div class="col-sm-12">
+                        <h12>Role: </h12>
+                        <select class="form-control" th:field="*{rol}"  id="role" name="role" onChange="onstatechange(this)"  style="width:300px" >
+                                       <option value="Admin">Admin</option>
+    									<option value="Pran">Pran</option>
+    									<option value="Pan">Pan</option>
+    									<option value="Uid">Uid</option>
+                            </select>
+                         </div>
+                        
+                        
+							<div class="col-sm-9">
+							<div>.</div>
+							<button type="submit" class="btn btn-primary btn-block from-control"  style="width:250px">Register User</button> <span th:utext="${successMessage}"></span>
+							</div>
+						
+							
+                        
+                      </form>
+               
+            </div>
+        </section>
+    </main>
+<div class="topa">
+	<marquee behavior="scroll" direction="left">Welcome to Karvy Data Management Services Official Web Page</marquee>
+</div>
+<footer class="site-footer">
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="pull-left">&copy; 2017 Karvy Data Management Services Limited</p>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>	
+</body>
+</html>
